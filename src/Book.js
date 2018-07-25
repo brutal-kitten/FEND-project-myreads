@@ -22,12 +22,10 @@ class Book extends Component {
                 </select>
               </div>
             </div>
-            <p className="book-title">{book.title}</p>
-            <p className="book-authors">{book.authors}</p>
+            <div className="book-title" ><p>{book.title}</p></div>
+            <div className="book-authors"><p>{book.authors}</p></div>
           </div>
         </li>
-
-
     )
   }
 
