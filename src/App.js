@@ -18,7 +18,19 @@ class BooksApp extends React.Component {
   componentDidMount() {
     BooksAPI.getAll().then((allBooks) => {
       console.log(allBooks);
-      this.setState({ books: allBooks })
+      this.setState({ books: allBooks });
+    })
+  }
+
+  changeBookShelf = (book, shelfToBe) => {
+    let id = book.id;
+    BooksAPI.update(book, shelfToBe).then(() => {
+      book.shelf = shelfToBe;
+
+      let allBooks = this.state.books.filter(book => book.id !== id);
+      allBooks.push(book);
+      console.log(allBooks);
+      this.setState({ books: allBooks });
     })
   }
 
@@ -55,14 +67,17 @@ class BooksApp extends React.Component {
               <Bookshelf
                 allBooks={this.state.books}
                 shelfname="wantToRead"
+                changeBookShelf={this.changeBookShelf}
               />
               <Bookshelf
                 allBooks={this.state.books}
                 shelfname="currentlyReading"
+                changeBookShelf={this.changeBookShelf}
               />
               <Bookshelf
                 allBooks={this.state.books}
                 shelfname="read"
+                changeBookShelf={this.changeBookShelf}
               />
             </div>
             <div className="open-search">
