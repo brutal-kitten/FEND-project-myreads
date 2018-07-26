@@ -15,8 +15,6 @@ class Bookshelf extends Component {
     const {allBooks, shelfname, changeBookShelf } = this.props;
 
     return (
-    <div key={shelfname} className="bookshelf">
-      <h2 className="bookshelf-title">{shelfname}</h2>
       <div className="bookshelf-books">
         <ol className="books-grid">
           {allBooks.filter(book => (book.shelf === shelfname)).map(book => (
@@ -25,7 +23,6 @@ class Bookshelf extends Component {
           ))}
         </ol>
       </div>
-    </div>
     )
   }
 }
