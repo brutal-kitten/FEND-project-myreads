@@ -12,11 +12,14 @@ class Book extends Component {
   render() {
 
     const {book , changeBookShelf } = this.props;
+    const coverPlaceHolder = "http://via.placeholder.com/128x193"
+    let image = (book.imageLinks &&  book.imageLinks.thumbnail) ? book.imageLinks.thumbnail : this.coverPlaceHolder;
+
 
     return (
         <li>
           <div className="book">
-            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}>
+            <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${image})` }}>
               <div className="book-shelf-changer">
                 <select value={book.shelf ? book.shelf: "none"} onChange={(evt) => changeBookShelf(book, evt.target.value)} >
                   <option value="move" disabled>Move to...</option>
