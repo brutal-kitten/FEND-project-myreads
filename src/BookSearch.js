@@ -11,7 +11,8 @@ class BookSearch extends Component {
 
   state = {
     query: '',
-    bookSearchResult: []
+    bookSearchResult: [],
+    searchResult: true
   }
 
   updateQuery = (query) => {
@@ -32,15 +33,17 @@ class BookSearch extends Component {
           }
           })
         })
-      this.setState({bookSearchResult: result});
-  })}
+      this.setState({bookSearchResult: result, searchResult: true});
+  }).catch(() => {
+     this.setState({searchResult: false});
+     this.clearQuery()})}
 
   if(query) {
     this.searchForBooks(query);
   }
 
  render() {
-   const { query, bookSearchResult } = this.state
+   const { query, bookSearchResult, searchResult } = this.state
    const { changeBookShelf, allBooks } = this.props
 
    if(query) {
@@ -61,7 +64,12 @@ class BookSearch extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-          {bookSearchResult.length > 0 && (
+          {searchResult === false && (
+            <div class='noresult'>
+              <h3>Sorry, we dont have such book yet</h3>
+            </div>
+          )}
+          {bookSearchResult.length > 0 && searchResult === true && (
             bookSearchResult.map(book => (
               <Book
                key={book.id}
