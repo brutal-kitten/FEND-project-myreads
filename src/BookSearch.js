@@ -16,6 +16,7 @@ class BookSearch extends Component {
   }
 
   updateQuery = (query) => {
+
     this.setState({query: query.trim() })
   }
 
@@ -65,11 +66,11 @@ class BookSearch extends Component {
         <div className="search-books-results">
           <ol className="books-grid">
           {searchResult === false && (
-            <div class='noresult'>
+            <div className='noresult'>
               <h3>Sorry, we dont have such book yet</h3>
             </div>
           )}
-          {bookSearchResult.length > 0 && searchResult === true && (
+          {(bookSearchResult.length > 0) && (searchResult === true) && (query.length > 0) && (
             bookSearchResult.map(book => (
               <Book
                key={book.id}
