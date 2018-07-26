@@ -31,7 +31,7 @@ class Book extends Component {
               </div>
             </div>
             <div className="book-title" ><p>{book.title}</p></div>
-            <div className="book-authors"><p>{book.authors}</p></div>
+            <div className="book-authors"><p>{book.authors ? book.authors : "Unknown"}</p></div>
           </div>
         </li>
     )
