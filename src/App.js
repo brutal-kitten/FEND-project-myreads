@@ -3,6 +3,7 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import Bookshelf from './Bookshelf'
 import BookSearch from './BookSearch'
+import { Link } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
@@ -12,7 +13,7 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    showSearchPage: false,
+  
     books: []
   }
 
@@ -70,7 +71,7 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+              <Link className="a" to='./BookSearch' >Add a book</Link>
             </div>
           </div>
         )}
