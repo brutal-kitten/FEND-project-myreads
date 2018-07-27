@@ -32,11 +32,11 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        /* view of search page */
+        {/* view of search page */}
         <Route exact path="/search" render={() => (
           <BookSearch allBooks={this.state.books} changeBookShelf={this.changeBookShelf}/>
         )}/>
-        /*view of the main page*/
+        {/*view of the main page*/}
         <Route exact path="/" render={() => (
           <div className="list-books">
             <div className="list-books-title">
@@ -68,7 +68,7 @@ class BooksApp extends React.Component {
                   />
               </div>
             </div>
-            /* button that navigate to search page*/
+            {/* button that navigate to search page*/}
             <div className="open-search">
               <Link className="a" to='./search' >Add a book</Link>
             </div>
