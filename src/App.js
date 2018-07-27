@@ -37,11 +37,12 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-        //the searchBook screen
+
         <Route exact path="/bookSearch" render={() => (
           <BookSearch allBooks={this.state.books} changeBookShelf={this.changeBookShelf}/>
         )}/>
 
+        <Route exact path="/" render={() => (
           <div className="list-books">
             <div className="list-books-title">
               <h1>MyReads</h1>
@@ -76,7 +77,8 @@ class BooksApp extends React.Component {
               <Link className="a" to='./bookSearch' >Add a book</Link>
             </div>
           </div>
-
+        )} />
+    
       </div>
     )
   }
