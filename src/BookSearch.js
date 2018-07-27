@@ -17,12 +17,16 @@ class BookSearch extends Component {
   }
 
   updateQuery = (query) => {
-
-    this.setState({query: query.trim() })
+    this.setState({query: query})
   }
 
   clearQuery = () => {
     this.setState({query: ''})
+  }
+
+  handleSubmit= (event) => {
+    event.preventDefault();
+    this.searchForBooks(this.state.query.trim());
   }
 
   searchForBooks = (query) => {
@@ -40,28 +44,24 @@ class BookSearch extends Component {
      this.setState({searchResult: false});
      this.clearQuery()})}
 
-  if(query) {
-    this.searchForBooks(query);
-  }
 
  render() {
    const { query, bookSearchResult, searchResult } = this.state
    const { changeBookShelf, allBooks } = this.props
-
-   if(query) {
-     this.searchForBooks(query);
-   }
 
     return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link exact to='/' className="close-search">Close</Link>
           <div className="search-books-input-wrapper">
+            <form onSubmit={(event) => this.handleSubmit(event)}>
             <input type="text"
               placeholder="Search by title or author"
               value={query}
               onChange={(event) => this.updateQuery(event.target.value)}
             />
+            <button className="find">Find books</button>
+            </form>
           </div>
         </div>
         <div className="search-books-results">
