@@ -16,21 +16,24 @@ class BookSearch extends Component {
     searchResult: true
   }
 
+  /*update state*/
   updateQuery = (query) => {
     this.setState({query: query})
   }
-
+  /*clear query and update state*/
   clearQuery = () => {
     this.setState({query: ''})
   }
-
+  /* when button pressed invoke searchForBooks */
   handleSubmit= (event) => {
     event.preventDefault();
     this.searchForBooks(this.state.query.trim());
   }
 
+  /* search for book*/
   searchForBooks = (query) => {
     BooksAPI.search(query).then((result) => {
+      /* for each book in returned array add a shelf information */
       result.forEach(book => {
         let id = book.id;
         this.props.allBooks.forEach(existedBook => {
@@ -39,8 +42,10 @@ class BookSearch extends Component {
           }
           })
         })
+      /* update state */
       this.setState({bookSearchResult: result, searchResult: true});
   }).catch(() => {
+     /* error handler: change state*/
      this.setState({searchResult: false});
      this.clearQuery()})}
 
